@@ -11,6 +11,7 @@ A simple Pomodoro Timer built with HTML, CSS, and JavaScript. This timer helps y
 
 ## 📁 Project Structure
 
+```bash
 pomodoro-timer/
 │
 ├── index.html # Main HTML structure
@@ -18,6 +19,7 @@ pomodoro-timer/
 ├── timer.js # Countdown logic and event handling
 ├── assets/ # Sounds, icons, or images
 └── README.md # You're here!
+```
 
 ## 🔧 Tech Stack
 
