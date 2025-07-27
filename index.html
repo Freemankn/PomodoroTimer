@@ -12,23 +12,26 @@
     </header>
 
     <main>
-      <div class="timer-container">
-        <div class="tab-bar">
+      <div id="timer-container">
+        <div id="tab-bar">
           <button id="Pomodoro-btn" class="tab">Pomodoro</button>
           <button id="Pomodoro-btn" class="tab">Short Break</button>
           <button id="Pomodoro-btn" class="tab">Long Break</button>
         </div>
         <div>
-          <p>25:00</p>
+          <p id="timer-text">25:00</p>
         </div>
-        
-        <div class="progress-bar"> 
+
+        <div id="myProgress">
+          <div id="myBar"></div>
         </div>
 
         <button id="start-btn" class="option-btn">Start</button>
-        <button id="start-btn" class="option-btn">Pause</button>
-        <button id="start-btn" class="option-btn">Reset</button>
+        <button id="pause-btn" class="option-btn">Pause</button>
+        <button id="reset-btn" class="option-btn">Reset</button>
       </div>
     </main>
+    <script src="timer.js"></script>
+    <script src="script.js"></script>
   </body>
 </html>

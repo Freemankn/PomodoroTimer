@@ -1,23 +1,24 @@
-// function formatTime(ms){
-//     const totalSeconds = Math.floor(ms / 1000);
-//     const hours = String(Math.floor(totalSeconds / 3600)).padStart(2, '0');
-//     const minutes = String(Math.floor((totalSeconds % 3600) / 60)).padStart(2, '0');
-//     const seconds = String(totalSeconds % 60).padStart(2, '0');
-//     return `${hours}:${minutes}:${seconds}`;
-// }
+// script.js
 
+const time = 1 // in minutes
+const t=new Timer(time);
 
+t.setTimerText();
 
-// start = document.getElementById("start-btn");
+const start = document.getElementById("start-btn");
+start.addEventListener("click", ()=>{
+    t.start();
+    if(t.timeDone()){
+        alert("Time is up");
+    }
+} );
 
-// start.addEventListener("click", ()=>{
-//     let counter = 10000;
-//     const interval = setInterval( () =>
-//     {console.log(formatTime(counter*1000))
-//         counter--;
-//         if(counter <0){
-//             clearInterval(interval); 
-//             console.log("✅ Pomodoro Complete");
-//         }
-//     },1000);
-// } );
+const pause = document.getElementById("pause-btn");
+pause.addEventListener("click", ()=>{
+    t.pause();
+} );
+
+const reset = document.getElementById("reset-btn");
+reset.addEventListener("click", ()=>{
+    t.reset();
+} );

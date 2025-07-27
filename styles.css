@@ -1,14 +1,43 @@
-.timer-container{
+/* Timer container */
+
+/* Dark mode color for background: rgb(35, 15, 150) */
+
+body{
+  background-color: rgb(184, 188, 247);
+}
+
+header h1 {
+    font-family: Itim;
+    color: #698CFF;
+    text-align: center;
+}
+
+#timer-container{
     position: absolute;
     top:300px;
     left: 150px;
     width: 472.0px;
     height: 276.0px;
     border-radius: 30px;
-    border: 1px solid #000;
-    background: #B9C2FF;
-    box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
+    background: rgb(152, 157, 231);
+    box-shadow: 0 6px 6px 0 rgba(0, 0, 0, 0.25);
     
+}
+
+/* Nav bar for Pomodoro mode, short break mode, and long break mode */
+
+#tab-bar{
+    position: relative;
+    top: 30px;
+    left: 70px;
+    width: 333.0px;
+    height: 24.0px;
+    border-radius: 50px;
+    border: 1px solid #000;
+    box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
+    background: #60A5FF;
+    overflow: hidden;
+    display: flex;
 }
 
 .tab {
@@ -28,29 +57,6 @@
   line-height: normal;
 }
 
-.tab-bar{
-    position: relative;
-    top: 30px;
-    left: 70px;
-    width: 333.0px;
-    height: 24.0px;
-    border-radius: 50px;
-    border: 1px solid #000;
-    box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
-    background: #60A5FF;
-    overflow: hidden;
-    display: flex;
-}
-
-.timer-container p{
-    position: relative;
-    top: 10px;
-    left: 190px;
-    font-size: 40px;
-    font-family: Itim;
-    color: #698CFF;
-}
-
 .tab:hover {
   background-color: #3390d6;
 }
@@ -60,8 +66,21 @@
   color: white;
 }
 
-.progress-bar{
-    position: relative;
+/* Timer Text */
+
+#timer-text{
+ position: relative;
+    top: 10px;
+    left: 190px;
+    font-size: 40px;
+    font-family: Itim;
+    color: #698CFF;
+}
+
+/* Progress Bar */
+
+#myProgress {
+  position: relative;
     left: 70px;
     top: -20px;
     width: 352.0px;
@@ -73,6 +92,18 @@
     border-radius: 30px;
 }
 
+#myBar {
+  align-items: center;
+  width: 100%; /* Initial width */
+  height: 32px;
+  background-color: #2c82c9;
+  border-radius: 30px;
+  text-align: center;
+  line-height: 20px; /* Vertically center text */
+  color: white;
+}
+
+/* Option buttons for start,reset, and pause */
 .option-btn{
     position: relative;
     left: 70px;
@@ -90,4 +121,15 @@
     border-radius: 20px;
     border-color: white;
     background: #88BCFF;
+    cursor: pointer;
 }
+
+.option-btn:hover {
+  background-color: #3390d6;
+}
+
+.option-btn.active {
+  background-color: #2c82c9;
+  color: white;
+}
+
