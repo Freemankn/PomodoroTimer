@@ -34,7 +34,7 @@ pomodoro-timer/
 1. **Clone the repo and compile TypeScript**
 
    ```bash
-   git clone git@github.com:your-username/pomodoro-timer.git
+   git clone git@github.com:Freemankn/pomodoro-timer.git
    cd pomodoro-timer
    npm install -g typescript
    tsc
