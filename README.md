@@ -55,6 +55,12 @@ This project is inspired by the Pomodoro Technique — a time management method 
 
 - Audio alert on session end
 
+## 🧑‍💻 Author
+
+Created by Freeman Nkouka
+
+---
+
 ## 📄 License
 
 MIT License. Feel free to use, fork, and improve.
