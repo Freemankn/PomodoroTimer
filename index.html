@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="pomodoro">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -10,18 +10,20 @@
       crossorigin="anonymous"
     ></script>
   </head>
-  <body>
+  <body class="pomodoro">
+    <!-- Default theme class -->
+
     <header>
       <h1>Pomodoro Timer</h1>
     </header>
 
     <main>
       <div id="timer-container">
+        <!-- === Settings Popup === -->
         <div id="popup">
           <div id="popup-container">
-            <h4>Setting</h4>
+            <h4>Settings</h4>
             <hr />
-
             <p>Time (Minutes)</p>
 
             <div id="popup-container-flex">
@@ -55,38 +57,56 @@
                 />
               </div>
             </div>
-
             <hr />
 
-            <p>Light/Dark Mode</p>
+            <p>
+              Light/Dark Mode <i class="fa-solid fa-sun" id="lightDarkMode-btn"></i>
+            </p>
+            <hr />
+
+            <div class="input-group horizontal">
+              <label for="autobreak-check">Auto Break</label>
+              <input type="checkbox" id="autobreak-check" />
+            </div>
             <hr />
 
             <div id="popup-container-flex">
               <button id="close-btn" class="option-btn">Close</button>
               <button id="save-btn" class="option-btn">Save</button>
+              <button id="default-btn" class="option-btn">Default</button>
             </div>
           </div>
         </div>
-        <i class="fa-etch fa-solid fa-gear fa-lg" id="settings-btn"></i>
 
+        <!-- === Settings Gear Icon === -->
+        <i class="fa-solid fa-gear fa-lg" id="settings-btn"></i>
+
+        <!-- === Tab Bar === -->
         <div id="tab-bar">
           <button id="pomodoro-btn" class="tab active">Pomodoro</button>
           <button id="shortbreak-btn" class="tab">Short Break</button>
           <button id="longbreak-btn" class="tab">Long Break</button>
         </div>
+
+        <!-- === Timer Display === -->
         <div>
           <p id="timer-text">25:00</p>
         </div>
 
+        <!-- === Progress Bar === -->
         <div id="myProgress">
           <div id="myBar"></div>
         </div>
 
-        <button id="start-btn" class="option-btn">Start</button>
-        <button id="pause-btn" class="option-btn">Pause</button>
-        <button id="reset-btn" class="option-btn">Reset</button>
+        <!-- === Timer Controls === -->
+        <div class="options-container">
+          <button id="start-pause-btn" class="option-btn">Start</button>
+          <button id="reset-btn" class="option-btn">Reset</button>
+        </div>
       </div>
     </main>
+
+    <!-- === Scripts === -->
     <script src="Timer.js"></script>
     <script src="SettingsManager.js"></script>
     <script src="TimerUI.js"></script>

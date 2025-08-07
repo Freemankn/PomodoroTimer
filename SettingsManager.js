@@ -4,7 +4,9 @@ class SettingsManager {
     return {
         pomodoroTime: 25,
         shortBreakTime: 5,
-        longBreakTime: 15
+        longBreakTime: 15,
+        onAutoBreak: true,
+        darkMode: false
     };
   }
 

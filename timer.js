@@ -1,4 +1,4 @@
-// timer.js
+// Timer.js
 class Timer{
 
     static TimerMode = Object.freeze({
@@ -19,10 +19,11 @@ class Timer{
 
     
     #isRunning = false;
-    
-    minutetosec(minute){
-        return minute*60;
-    }
+    #onAutoBreak = true;
+    #pomodoroCount = 0;
+    #onModeChange = null;
+
+
 
     constructor(){
     // Step 1: Default config values
@@ -36,7 +37,13 @@ class Timer{
 
     // Step 3: Initial mode
     this.switchToPomodoro();
-    } 
+    }
+    
+    
+    
+    minutetosec(minute){
+        return minute*60;
+    }
 
     // Getters
 
@@ -56,12 +63,20 @@ class Timer{
         return this.#timerMode;
     }
 
+    getPomodoroCount() {
+        return this.#pomodoroCount;
+    }
+
+    isRunning() {
+        return this.#isRunning;
+    }
+
 
     // Setters
 
     setTimerText(){
         if (!this.#timerText) console.error("timerText is null");
-        this.#timerText.innerText = this.formatTime(this.#currentTimeSec*1000);
+        this.#timerText.innerText = this.formatTime(this.#currentTimeSec);
     }
 
     setPomodoroTime(minutes){
@@ -74,6 +89,14 @@ class Timer{
 
     setShortBrkTime(minutes){
         this.#shortBreakTimeMin = minutes;
+    }
+
+    setOnModeChange(callback) {
+        this.#onModeChange = callback;
+    }
+
+    setAutoBreak(onAutoBreak){
+        this.#onAutoBreak = onAutoBreak;
     }
 
     updateModeTime(){
@@ -106,9 +129,9 @@ class Timer{
     // Setting the time for Mode
 
     setModeTime(minutes, mode){
+        this.#timerMode = mode;
         this.#currentTimeSec = this.#totalTimeSec = this.minutetosec(minutes);
         this.setTimerText();
-        this.#timerMode = mode;
         this.updateProgressBar();
     }
 
@@ -131,35 +154,61 @@ class Timer{
     }
 
 
-    formatTime(ms){
-    const totalSeconds = Math.floor(ms / 1000);
-    const minutes = String(Math.floor((totalSeconds % 3600) / 60)).padStart(2, '0');
-    const seconds = String(totalSeconds % 60).padStart(2, '0');
-    return `${minutes}:${seconds}`;
+    formatTime(seconds){
+        const minutes = String(Math.floor(seconds / 60)).padStart(2, '0');
+        const secs = String(seconds % 60).padStart(2, '0');
+        return `${minutes}:${secs}`;
     }
+
 
     updateProgressBar(){
         this.#progressBar.style.width = (this.#currentTimeSec/this.#totalTimeSec*100)+"%";
-        this.setTimerText();
     }
 
     clear(){
         clearInterval(this.#intervalID);
+        this.#intervalID = null;
         this.#isRunning = false; 
     }
+
+    onTimerComplete() {
+    if (this.#timerMode === Timer.TimerMode.POMODORO) {
+        this.#pomodoroCount++;
+        console.log(this.#pomodoroCount)
+
+
+        if (this.#pomodoroCount % 4 === 0) {
+            this.switchToLongBrk();
+        } else {
+            this.switchToShortBrk();
+        }
+    } else {
+        this.switchToPomodoro();
+    }
+    
+    if (this.#onModeChange) {
+        this.#onModeChange();
+    }
+
+      this.start(); // centralized auto-start here
+
+ }
 
     start(){
         if (this.#isRunning) return; // Don't start if already running
         this.#isRunning = true;
-        this.#intervalID = setInterval( () =>
-        {
-            this.updateProgressBar();
-            this.#currentTimeSec--;
-            if(this.#currentTimeSec <0){
-                this.clear(); 
-                alert("Time is up");
+        this.#intervalID = setInterval(() => {
+            if (this.#currentTimeSec <= 0) {
+                this.clear();
+                if(this.#onAutoBreak){
+                    this.onTimerComplete();
+                }
+            } else {
+                this.#currentTimeSec--;
+                this.setTimerText();
+                this.updateProgressBar();
             }
-        },1000);
+        }, 1000);
     }
 
     pause(){

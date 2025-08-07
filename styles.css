@@ -2,13 +2,481 @@
 
 /* Dark mode color for background: rgb(35, 15, 150) */
 
-body{
+body,
+#timer-container,
+#tab-bar,
+.tab,
+.option-btn,
+#timer-text,
+#settings-btn,
+#myProgress,
+#myBar,
+header h1,
+#popup-container,
+#popup-container h4,
+#popup-container p,
+.input-group label,
+.timer-input {
+  transition: background-color 0.6s ease, color 0.6s ease;
+}
+
+#myProgress,
+#myBar {
+  transition: background-color 0.4s ease;
+}
+
+.tab.active,
+#myBar {
+  transition: box-shadow 0.4s ease, background-color 0.4s ease;
+}
+
+
+#myBar {
+  transition: width 0.25s linear, background-color 0.4s ease;
+}
+
+
+
+
+/* === POMODORO THEME === */
+body.pomodoro {
   background-color: rgb(184, 188, 247);
 }
 
+body.pomodoro #timer-container {
+  background-color: rgb(152, 157, 231);
+}
+
+body.pomodoro #timer-text {
+  color: #5f61d7; /* Purplish text */
+}
+
+body.pomodoro header h1 {
+  color: #4a48a6; /* Slightly deeper purple */
+}
+
+body.pomodoro #tab-bar {
+  background: #a6aaf0; /* light purple strip */
+}
+
+body.pomodoro .tab {
+  background-color: #a6aaf0;
+  color: #2e2a8f;
+}
+
+body.pomodoro .tab:hover {
+  background-color: #7e83e3;
+}
+
+body.pomodoro .tab.active {
+  background-color: #5f61d7;
+  color: #17146a;
+}
+
+body.pomodoro .option-btn {
+  background: #7e83e3;
+  color: #2e2a8f;
+}
+
+body.pomodoro .option-btn:hover {
+  background-color: #5f61d7;
+}
+
+body.pomodoro #myProgress {
+  background-color: #c7c9f2;
+}
+
+body.pomodoro #myBar {
+  background-color: #5f61d7;
+}
+
+body.pomodoro #settings-btn {
+  color: #4a48a6;
+}
+
+body.pomodoro #settings-btn:hover {
+  color: #2e2a8f;
+}
+
+body.pomodoro #popup-container {
+  background-color: #7879dc; /* soft purple */
+}
+
+body.pomodoro #popup-container h4,
+body.pomodoro #popup-container p,
+body.pomodoro .input-group label {
+  color: #f1f3ff;
+}
+
+body.pomodoro .timer-input {
+  background: #a6aaf0;
+  color: #2e2a8f;
+}
+
+body.pomodoro .timer-input::placeholder {
+  color: #bdbfff;
+}
+
+body.pomodoro .tab.active {
+  box-shadow: 0 0 12px 3px rgba(95, 97, 215, 0.6);
+}
+
+body.pomodoro #myBar {
+  box-shadow: 0 0 14px 3px rgba(65, 68, 244, 0.5);
+}
+
+body.pomodoro #autobreak-check {
+  accent-color: #e2dffb
+}
+
+
+/* === SHORT BREAK THEME === */
+body.short-break {
+  background-color: #d0eaff;
+}
+
+body.short-break #timer-container {
+  background-color: #a3ccf9;
+}
+
+body.short-break #timer-text {
+  color: #2167d3;
+}
+
+body.short-break header h1{
+  color: #2167d3;
+}
+
+body.short-break #tab-bar {
+  background: #6fbaff;
+}
+
+body.short-break .tab {
+  background-color: #6fbaff;
+  color: #0f4499;
+}
+
+body.short-break .tab:hover {
+  background-color: #4ba0e9;
+}
+
+body.short-break .tab.active {
+  background-color: #2167d3;
+  color: #123267;
+}
+
+body.short-break .option-btn {
+  background: #7dc3ff;
+  color: #0f4499;
+}
+
+body.short-break .option-btn:hover {
+  background-color: #469ee1;
+}
+
+body.short-break #myProgress {
+  background-color: #c6e3fc;
+}
+
+body.short-break #myBar {
+  background-color: #4a94e9;
+}
+
+body.short-break #settings-btn {
+  color: #0e3ea8;
+}
+
+body.short-break #settings-btn:hover {
+  color: #052d87;
+}
+
+body.short-break #popup-container {
+  background-color: #51a8d5;
+}
+
+body.short-break #popup-container h4,
+body.short-break #popup-container p,
+body.short-break .input-group label {
+  color: #d5f2ff;
+}
+
+body.short-break .timer-input {
+  background: #8cd6ff;
+  color: #003d5c;
+}
+
+body.short-break .timer-input::placeholder {
+  color: #b3e9ff;
+}
+
+body.short-break .tab.active {
+  box-shadow: 0 0 12px 3px rgba(33, 103, 211, 0.6);
+}
+
+body.short-break #myBar {
+  box-shadow: 0 0 14px 3px rgba(33, 103, 211, 0.5);
+}
+
+body.short-break #autobreak-check {
+  accent-color: #a3d8ff;
+}
+
+
+/* === LONG BREAK THEME === */
+body.long-break {
+  background-color: #ffe4e1;
+}
+
+body.long-break #timer-container {
+  background-color: #f9b7b7;
+}
+
+body.long-break #timer-text {
+  color: #b30000;
+}
+
+body.long-break header h1{
+  color: red;
+}
+
+body.long-break #tab-bar {
+  background: #ff8080;
+}
+
+body.long-break .tab {
+  background-color: #ff8080;
+  color: #990f0f;
+}
+
+body.long-break .tab:hover {
+  background-color: #e45a5a;
+}
+
+body.long-break .tab.active {
+  background-color: #b30000;
+  color: #5c0b0b;
+}
+
+body.long-break .option-btn {
+  background: #ff9999;
+  color: #990f0f;
+}
+
+body.long-break .option-btn:hover {
+  background-color: #dd6666;
+}
+
+body.long-break #myProgress {
+  background-color: #ffd6d6;
+}
+
+body.long-break #myBar {
+  background-color: #d64545;
+}
+
+body.long-break #settings-btn {
+  color: #8b0000;
+}
+
+body.long-break #settings-btn:hover {
+  color: #5c0000;
+}
+
+body.long-break #popup-container {
+  background-color: #f38181;
+}
+
+body.long-break #popup-container h4,
+body.long-break #popup-container p,
+body.long-break .input-group label {
+  color: #fff0f0;
+}
+
+body.long-break .timer-input {
+  background: #ffb3b3;
+  color: #5c0b0b;
+}
+
+body.long-break .timer-input::placeholder {
+  color: #ffdede;
+}
+
+body.long-break .tab.active {
+  box-shadow: 0 0 12px 3px rgba(179, 0, 0, 0.6);
+}
+
+body.long-break #myBar {
+  box-shadow: 0 0 14px 3px rgba(179, 0, 0, 0.5);
+}
+
+body.long-break #autobreak-check {
+  accent-color: #ffb3b3;
+}
+
+/* === DARK MODE OVERRIDES === */
+body.dark.pomodoro {
+  background-color: #2e2a4f;              /* deep indigo */
+}
+body.dark.pomodoro #timer-container {
+  background-color: #3a356c;              /* darker purple */
+}
+body.dark.pomodoro #timer-text,
+body.dark.pomodoro header h1 {
+  color: #bdb8e8;                         /* soft lilac */
+}
+body.dark.pomodoro #tab-bar {
+  background: #4b477e;                    /* slate purple */
+}
+body.dark.pomodoro .tab {
+  background-color: #4b477e;
+  color: #d1cde8;
+}
+body.dark.pomodoro .tab:hover {
+  background-color: #605e99;
+}
+body.dark.pomodoro .tab.active {
+  background-color: #7e7ae0;
+  color: #faf8ff;
+}
+body.dark.pomodoro .option-btn {
+  background: #605e99;
+  color: #e2dffb;
+}
+body.dark.pomodoro .option-btn:hover {
+  background-color: #7e7ae0;
+}
+body.dark.pomodoro #myProgress {
+  background-color: #423f6c;
+}
+body.dark.pomodoro #myBar {
+  background-color: #7e7ae0;
+}
+body.dark.pomodoro #settings-btn {
+  color: #bdb8e8;
+}
+body.dark.pomodoro #popup-container {
+  background-color: #3a356c;
+}
+body.dark.pomodoro .timer-input {
+  background: #4b477e;
+  color: #e2dffb;
+}
+
+/* === DARK SHORT BREAK === */
+body.dark.short-break {
+  background-color: #1f3a4b;              /* deep sea blue */
+}
+body.dark.short-break #timer-container {
+  background-color: #2a4e6a;              /* darker ocean */
+}
+body.dark.short-break #timer-text,
+body.dark.short-break header h1 {
+  color: #a3d8ff;                         /* light cyan */
+}
+body.dark.short-break #tab-bar {
+  background: #34678a;
+}
+body.dark.short-break .tab {
+  background-color: #34678a;
+  color: #c2e8ff;
+}
+body.dark.short-break .tab:hover {
+  background-color: #4a89b0;
+}
+body.dark.short-break .tab.active {
+  background-color: #6fbaff;
+  color: #003353;
+}
+body.dark.short-break .option-btn {
+  background: #4a89b0;
+  color: #e2f5ff;
+}
+body.dark.short-break .option-btn:hover {
+  background-color: #6fbaff;
+}
+body.dark.short-break #myProgress {
+  background-color: #295974;
+}
+body.dark.short-break #myBar {
+  background-color: #6fbaff;
+}
+body.dark.short-break #settings-btn {
+  color: #a3d8ff;
+}
+body.dark.short-break #popup-container {
+  background-color: #2a4e6a;
+}
+body.dark.short-break .timer-input {
+  background: #34678a;
+  color: #e2f5ff;
+}
+
+/* === DARK LONG BREAK === */
+body.dark.long-break {
+  background-color: #4b1f1f;              /* very dark red */
+}
+body.dark.long-break #timer-container {
+  background-color: #6a2a2a;              /* maroon */
+}
+body.dark.long-break #timer-text,
+body.dark.long-break header h1 {
+  color: #ffb3b3;                         /* soft rose */
+}
+body.dark.long-break #tab-bar {
+  background: #8a3434;
+}
+body.dark.long-break .tab {
+  background-color: #8a3434;
+  color: #ffdede;
+}
+body.dark.long-break .tab:hover {
+  background-color: #b04a4a;
+}
+body.dark.long-break .tab.active {
+  background-color: #d64545;
+  color: #330000;
+}
+body.dark.long-break .option-btn {
+  background: #b04a4a;
+  color: #ffe5e5;
+}
+body.dark.long-break .option-btn:hover {
+  background-color: #d64545;
+}
+body.dark.long-break #myProgress {
+  background-color: #744141;
+}
+body.dark.long-break #myBar {
+  background-color: #d64545;
+}
+body.dark.long-break #settings-btn {
+  color: #ffb3b3;
+}
+body.dark.long-break #popup-container {
+  background-color: #6a2a2a;
+}
+body.dark.long-break .timer-input {
+  background: #8a3434;
+  color: #ffe5e5;
+}
+
+/* === DARK MODE: Auto-Break Checkbox === */
+body.dark.pomodoro #autobreak-check{
+  accent-color:  #2e2a8f;;  /* lilac for Pomodoro dark */
+}
+
+body.dark.short-break #autobreak-check {
+  accent-color: rgba(33, 103, 211, 0.5);; 
+}
+
+body.dark.long-break  #autobreak-check {
+  accent-color: rgba(179, 0, 0, 0.5);
+}
+
+
+
 header h1 {
     font-family: Itim;
-    color: #698CFF;
     text-align: center;
 }
 
@@ -19,9 +487,9 @@ header h1 {
     width: 472.0px;
     height: 276.0px;
     border-radius: 30px;
-    background: rgb(152, 157, 231);
     box-shadow: 0 6px 6px 0 rgba(0, 0, 0, 0.25);
 }
+
 
 /* Settings gear */
 
@@ -29,12 +497,16 @@ header h1 {
   position: relative;
   top: 10px;
   left: 430px;
-  color: #072af0;
 }
 
 #settings-btn:hover{
-  color: #0e11b8;
   cursor: pointer;
+}
+
+/* Lightmode Sun Icon */
+
+#lightDarkMode-btn{
+  color:rgb(250, 15, 15);
 }
 
 /* Nav bar for Pomodoro mode, short break mode, and long break mode */
@@ -48,14 +520,12 @@ header h1 {
     border-radius: 50px;
     border: 1px solid #000;
     box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
-    background: #60A5FF;
     overflow: hidden;
     display: flex;
 }
 
 .tab {
   flex: 1;
-  background-color: #60A5FF;
   border: none;
   color: black;
   font-weight: bold;
@@ -70,13 +540,6 @@ header h1 {
   line-height: normal;
 }
 
-.tab:hover {
-  background-color: #3390d6;
-}
-
-.tab.active {
-  background-color: #2c76af;
-}
 
 /* Timer Text */
 
@@ -86,7 +549,6 @@ header h1 {
     left: 190px;
     font-size: 40px;
     font-family: Itim;
-    color: #698CFF;
 }
 
 /* Progress Bar */
@@ -100,7 +562,6 @@ header h1 {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #B5D5FF;
     border-radius: 30px;
 }
 
@@ -108,14 +569,21 @@ header h1 {
   align-items: center;
   width: 100%; /* Initial width */
   height: 32px;
-  background-color: #2c82c9;
   border-radius: 30px;
   text-align: center;
   line-height: 20px; /* Vertically center text */
-  color: white;
 }
 
-/* Option buttons for start,reset, and pause */
+.options-container{
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  margin-top: 3px;
+  margin-left: -160px;
+  gap: 70px
+}
+
+/* Option buttons for start, reset, and pause */
 .option-btn{
     position: relative;
     left: 70px;
@@ -132,13 +600,10 @@ header h1 {
     flex-shrink: 0;
     border-radius: 20px;
     border-color: white;
-    background: #88BCFF;
     cursor: pointer;
 }
 
-.option-btn:hover {
-  background-color: #3390d6;
-}
+
 
 
 /* Pop up */
@@ -182,9 +647,10 @@ header h1 {
 }
 
 #popup-container p{
-    color:  rgb(206, 226, 243);
-text-align: left;
-padding-left: 20px;
+  color:  rgb(206, 226, 243);
+  text-align: left;
+  padding-left: 20px;
+  font-size: 14px;
 }
 
 #popup-container-flex {
@@ -225,11 +691,22 @@ padding-left: 20px;
   gap: 5px;
 }
 
+.input-group.horizontal {
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 10px;
+  left: -10px;
+}
+
+
 .input-group label {
   color: rgb(206, 226, 243);
   font-size: 14px;
   font-family: Itim;
+  
 }
+
 
 
 

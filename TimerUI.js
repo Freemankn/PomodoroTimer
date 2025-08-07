@@ -1,6 +1,8 @@
+//TimerUI.js
 class TimerUI {
   #timer;
-  #popup
+  #popup;
+  
 
   constructor(timer) {
     this.#timer = timer;
@@ -9,20 +11,78 @@ class TimerUI {
   }
 
   init() {
+    this.#timer.setOnModeChange(() => {
+        this.updateUI(); // already calls updateModeButtons + applyThemeClass
+    });
     this.bindButtons();
     this.bindPopup();
     this.bindModeSwitching();
     this.loadSettings();
     this.restoreSettingsPopupInputs();
+    setTimeout(() => {
+    document.body.style.transition = 'background-color 0.6s ease';
+    }, 100); // wait for first paint before animating
   }
+  
+  // Theme
+  applyThemeClass(mode) {
+  document.body.classList.remove("pomodoro", "short-break", "long-break");
+
+  switch (mode) {
+    case Timer.TimerMode.POMODORO:
+      document.body.classList.add("pomodoro");
+      break;
+    case Timer.TimerMode.SHORT_BREAK:
+      document.body.classList.add("short-break");
+      break;
+    case Timer.TimerMode.LONG_BREAK:
+      document.body.classList.add("long-break");
+      break;
+  }
+}
+
+ 
+
+
 
   // === 🎛️ Buttons ===
   bindButtons() {
-    document.getElementById("start-btn").addEventListener("click", () => this.#timer.start());
-    document.getElementById("pause-btn").addEventListener("click", () => this.#timer.pause());
+    document.getElementById("start-pause-btn").addEventListener("click", () => this.startAndPause());
     document.getElementById("reset-btn").addEventListener("click", () => this.#timer.reset());
     document.getElementById("save-btn").addEventListener("click", () => this.saveUserSettings());
+    document.getElementById("default-btn").addEventListener("click", ()=> this.loadDefaultSettings());
+    document.getElementById("autobreak-check").addEventListener("change", ()=> this.changeAutoBreak());
+    document.getElementById("lightDarkMode-btn").addEventListener("click", ()=> this.toggleDarkMode(!document.body.classList.contains("dark")));
   }
+
+   toggleDarkMode(on) {
+    document.body.classList.toggle("dark", on);
+    const icon = document.getElementById('lightDarkMode-btn');
+
+    if (on) {
+      icon.classList.replace('fa-sun',  'fa-moon');
+      icon.style.color = "#4137ccff";
+  } else {
+      icon.classList.replace('fa-moon', 'fa-sun');
+      icon.style.color = "rgb(250, 15, 15)";
+    }
+  }
+
+  // ==== Start/Pause ===
+  startAndPause() {
+    if (this.#timer.isRunning()) {
+        this.#timer.pause();
+        document.getElementById("start-pause-btn").innerText = "Start";
+    } else {
+        this.#timer.start();
+        document.getElementById("start-pause-btn").innerText = "Pause";
+    }
+  };
+  
+//  === Auto Break ===
+ changeAutoBreak(){
+    this.#timer.setAutoBreak(document.getElementById("autobreak-check").checked);
+ }
 
   // === ⏱️ Mode Switching ===
   bindModeSwitching() {
@@ -32,17 +92,20 @@ class TimerUI {
 
     pomodoro.addEventListener("click", () => {
       this.#timer.switchToPomodoro();
-      this.updateModeButtons();
+      this.updateUI();
+      document.getElementById("start-pause-btn").innerText = "Start";
     });
 
     shortbreak.addEventListener("click", () => {
       this.#timer.switchToShortBrk();
-      this.updateModeButtons();
+      this.updateUI();
+      document.getElementById("start-pause-btn").innerText = "Start";
     });
 
     longbreak.addEventListener("click", () => {
       this.#timer.switchToLongBrk();
-      this.updateModeButtons();
+      this.updateUI();
+      document.getElementById("start-pause-btn").innerText = "Start";
     });
   }
 
@@ -70,6 +133,7 @@ class TimerUI {
   bindPopup() {
     const setting = document.getElementById("settings-btn");
     const close = document.getElementById("close-btn");
+    
 
     setting.addEventListener("click", () => {
       this.#popup.classList.add("show");
@@ -99,23 +163,38 @@ class TimerUI {
   // === 💾 LocalStorage ===
   loadSettings() {
     const saved = SettingsManager.load();
-    if (!saved) return;
-
+    
     this.#timer.setPomodoroTime(saved.pomodoroTime);
     this.#timer.setShortBrkTime(saved.shortBreakTime);
     this.#timer.setLongBrkTime(saved.longBreakTime);
-    this.#timer.updateModeTime();
+    this.#timer.setAutoBreak(saved.onAutoBreak);
+
+    this.toggleDarkMode(saved.darkMode);
+
+    this.#timer.reset();       // ✅ Set timer to correct mode with new time
+    this.updateUI();           // ✅ Sync the UI with new mode
+  }
+
+  loadDefaultSettings(){
+    SettingsManager.clear();
+    this.loadSettings();
+    this.restoreSettingsPopupInputs();
   }
 
   saveUserSettings() {
     const settings = {
       pomodoroTime: Number(document.getElementById("pomodoro-input").value),
       shortBreakTime: Number(document.getElementById("shortbreak-input").value),
-      longBreakTime: Number(document.getElementById("longbreak-input").value)
+      longBreakTime: Number(document.getElementById("longbreak-input").value),
+      onAutoBreak: document.getElementById("autobreak-check").checked,
+      darkMode:  document.body.classList.contains("dark")
     };
     SettingsManager.save(settings);
     this.#popup.classList.remove("show");
     this.applyChangesFromInputs();
+    this.#timer.reset();       // ✅ Set timer to correct mode with new time
+    this.updateUI();           // ✅ Sync the UI with new mode
+    document.getElementById("start-pause-btn").innerText = "Start";
   }
 
   // === 🔧 Utilities ===
@@ -123,16 +202,25 @@ class TimerUI {
     const pomodoro = Number(document.getElementById("pomodoro-input").value);
     const shortBreak = Number(document.getElementById("shortbreak-input").value);
     const longBreak = Number(document.getElementById("longbreak-input").value);
+    const onAutoBreak = document.getElementById("autobreak-check").checked;
 
     this.#timer.setPomodoroTime(pomodoro);
     this.#timer.setShortBrkTime(shortBreak);
     this.#timer.setLongBrkTime(longBreak);
-    this.#timer.updateModeTime();
+    this.#timer.setAutoBreak(onAutoBreak);
+
   }
 
   restoreSettingsPopupInputs() {
+    const saved = SettingsManager.load();
     document.getElementById("pomodoro-input").value = this.#timer.getPomodoroTime();
     document.getElementById("shortbreak-input").value = this.#timer.getShortBrkTime();
     document.getElementById("longbreak-input").value = this.#timer.getLongBrkTime();
+    document.getElementById("autobreak-check").checked = saved.onAutoBreak;
+  }
+
+  updateUI() {
+    this.updateModeButtons();
+    this.applyThemeClass(this.#timer.getTimerMode());
   }
 }

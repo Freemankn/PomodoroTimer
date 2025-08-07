@@ -16,8 +16,9 @@ pomodoro-timer/
 │
 ├── index.html # Main HTML structure
 ├── style.css # Styling (colors, layout, fonts)
-├── timer.js # Countdown logic and event handling
-├── assets/ # Sounds, icons, or images
+├── Timer.js # Countdown logic and event handling
+├── TimerUI.js # Handles UI changes to the timer
+├── SettingsManager.js # Handles the config settings for the timer
 └── README.md # You're here!
 ```
 
