@@ -5,9 +5,10 @@ A simple Pomodoro Timer built with HTML, CSS, and JavaScript. This timer helps y
 ## 🚀 Features
 
 - Start, pause, and reset timer
-- Adjustable session and break durations
+- Custom timer durations
+- Long break after 4 sessions
 - Visual countdown display
-- Audio alert on session end
+- Dark mode toggle
 
 ## 📁 Project Structure
 
@@ -52,9 +53,7 @@ This project is inspired by the Pomodoro Technique — a time management method 
 
 ## 🛠️ Future Improvements
 
-- Custom timer durations
-- Long break after 4 sessions
-- Dark mode toggle
+- Audio alert on session end
 
 ## 📄 License
 
