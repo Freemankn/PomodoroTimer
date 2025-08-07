@@ -19,6 +19,7 @@ pomodoro-timer/
 ├── Timer.js # Countdown logic and event handling
 ├── TimerUI.js # Handles UI changes to the timer
 ├── SettingsManager.js # Handles the config settings for the timer
+├── tsconfig.json # Config file for compiling typscript
 └── README.md # You're here!
 ```
 
