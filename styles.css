@@ -511,6 +511,10 @@ header h1 {
   color:rgb(250, 15, 15);
 }
 
+#lightDarkMode-btn:hover{
+  cursor: pointer;
+}
+
 /* Nav bar for Pomodoro mode, short break mode, and long break mode */
 
 #tab-bar{
@@ -631,9 +635,10 @@ header h1 {
 }
 
 #popup-container{
-    position: absolute;
-    top:300px;
-    left: 210px;
+    position: relative;
+    top:50%;
+    left:50%;
+    transform: translate(-50%, -50%);
     width: 370.0px;
     height: 400.0px;
     border-radius: 10px;

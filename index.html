@@ -18,67 +18,67 @@
     </header>
 
     <main>
-      <div id="timer-container">
-        <!-- === Settings Popup === -->
-        <div id="popup">
-          <div id="popup-container">
-            <h4>Settings</h4>
-            <hr />
-            <p>Time (Minutes)</p>
+      <!-- === Settings Popup === -->
+      <div id="popup">
+        <div id="popup-container">
+          <h4>Settings</h4>
+          <hr />
+          <p>Time (Minutes)</p>
 
-            <div id="popup-container-flex">
-              <div class="input-group">
-                <label for="pomodoro-input">Pomodoro</label>
-                <input
-                  type="number"
-                  class="timer-input"
-                  id="pomodoro-input"
-                  min="0"
-                />
-              </div>
-
-              <div class="input-group">
-                <label for="shortbreak-input">Short Break</label>
-                <input
-                  type="number"
-                  class="timer-input"
-                  id="shortbreak-input"
-                  min="0"
-                />
-              </div>
-
-              <div class="input-group">
-                <label for="longbreak-input">Long Break</label>
-                <input
-                  type="number"
-                  class="timer-input"
-                  id="longbreak-input"
-                  min="0"
-                />
-              </div>
+          <div id="popup-container-flex">
+            <div class="input-group">
+              <label for="pomodoro-input">Pomodoro</label>
+              <input
+                type="number"
+                class="timer-input"
+                id="pomodoro-input"
+                min="0"
+              />
             </div>
-            <hr />
 
-            <p>
-              Light/Dark Mode
-              <i class="fa-solid fa-sun" id="lightDarkMode-btn"></i>
-            </p>
-            <hr />
-
-            <div class="input-group horizontal">
-              <label for="autobreak-check">Auto Break</label>
-              <input type="checkbox" id="autobreak-check" />
+            <div class="input-group">
+              <label for="shortbreak-input">Short Break</label>
+              <input
+                type="number"
+                class="timer-input"
+                id="shortbreak-input"
+                min="0"
+              />
             </div>
-            <hr />
 
-            <div id="popup-container-flex">
-              <button id="close-btn" class="option-btn">Close</button>
-              <button id="save-btn" class="option-btn">Save</button>
-              <button id="default-btn" class="option-btn">Default</button>
+            <div class="input-group">
+              <label for="longbreak-input">Long Break</label>
+              <input
+                type="number"
+                class="timer-input"
+                id="longbreak-input"
+                min="0"
+              />
             </div>
           </div>
-        </div>
+          <hr />
 
+          <p>
+            Light/Dark Mode
+            <i class="fa-solid fa-sun" id="lightDarkMode-btn"></i>
+          </p>
+          <hr />
+
+          <div class="input-group horizontal">
+            <label for="autobreak-check">Auto Break</label>
+            <input type="checkbox" id="autobreak-check" />
+          </div>
+          <hr />
+
+          <div id="popup-container-flex">
+            <button id="close-btn" class="option-btn">Close</button>
+            <button id="save-btn" class="option-btn">Save</button>
+            <button id="default-btn" class="option-btn">Default</button>
+          </div>
+        </div>
+      </div>
+
+      <div id="timer-container">
         <!-- === Settings Gear Icon === -->
         <i class="fa-solid fa-gear fa-lg" id="settings-btn"></i>
 
