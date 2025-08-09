@@ -1,6 +1,6 @@
 # Pomodoro Timer ⏱️
 
-A simple Pomodoro Timer built with HTML, CSS, and JavaScript. This timer helps you stay focused using 25-minute work sessions followed by short breaks.
+A simple Pomodoro Timer built with HTML, CSS, and TypeScript. This timer helps you stay focused using 25-minute work sessions followed by short breaks.
 
 ## 🚀 Features
 
@@ -29,8 +29,6 @@ pomodoro-timer/
 - HTML5
 - CSS3 (Flexbox or Grid)
 - TypeScript (ES6 modules)
-
-## 🎯 How to Use
 
 ## 🧪 How to Run Locally
 
