@@ -480,15 +480,17 @@ header h1 {
     text-align: center;
 }
 
-#timer-container{
+#timer-container {
     position: absolute;
-    top:300px;
-    left: 150px;
-    width: 472.0px;
-    height: 276.0px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* Moves the center of timer containter to the center of screen  */
+    width: 472px;
+    height: 276px;
     border-radius: 30px;
     box-shadow: 0 6px 6px 0 rgba(0, 0, 0, 0.25);
 }
+
 
 
 /* Settings gear */
